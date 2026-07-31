@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Love ❤️</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ffb199,#ffd194);
+background-size:400% 400%;
+animation:bg 12s ease infinite;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.card{
+
+width:90%;
+max-width:420px;
+padding:30px;
+border-radius:25px;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(15px);
+text-align:center;
+color:white;
+box-shadow:0 10px 35px rgba(0,0,0,.25);
+z-index:10;
+animation:pop 1s;
+}
+
+@keyframes pop{
+0%{
+transform:scale(.5);
+opacity:0;
+}
+100%{
+transform:scale(1);
+opacity:1;
+}
+}
+
+h1{
+
+font-family:"Great Vibes",cursive;
+font-size:55px;
+margin-bottom:15px;
+animation:glow 2s infinite;
+}
+
+@keyframes glow{
+
+0%,100%{
+text-shadow:0 0 10px white;
+}
+
+50%{
+text-shadow:0 0 25px #fff;
+}
+
+}
+
+p{
+
+font-size:18px;
+line-height:1.7;
+margin-bottom:25px;
+
+}
+
+button{
+
+padding:15px 35px;
+border:none;
+border-radius:50px;
+font-size:18px;
+background:white;
+color:#ff4d6d;
+cursor:pointer;
+font-weight:bold;
+transition:.3s;
+}
+
+button:hover{
+
+transform:scale(1.1);
+
+}
+
+.hearts{
+
+position:absolute;
+width:100%;
+height:100%;
+overflow:hidden;
+top:0;
+left:0;
+
+}
+
+.heart{
+
+position:absolute;
+bottom:-50px;
+color:#fff;
+font-size:25px;
+animation:float linear infinite;
+
+}
+
+@keyframes float{
+
+0%{
+
+transform:translateY(0) rotate(0deg);
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(-110vh) rotate(360deg);
+opacity:0;
+
+}
+
+}
+
+canvas{
+
+position:fixed;
+top:0;
+left:0;
+pointer-events:none;
+
+}
+
+@media(max-width:480px){
+
+h1{
+font-size:45px;
+}
+
+p{
+font-size:16px;
+}
+
+button{
+
+font-size:16px;
+padding:13px 28px;
+
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<canvas id="confetti"></canvas>
+
+<div class="hearts" id="hearts"></div>
+
+<div class="card">
+
+<h1>Hey Love ❤️</h1>
+
+<p>
+Hey,bby dekha jaye to its your 2nd birthday,batu kese its 1 year ke tu girlfriend day manayege mere sath..😁
+sach bolu to bohot ups and downs ke baad ham yaha tak phoche hai..ಥ_ಥ 
+And i am very glad to have you, Mujhko kabhi yesa fell nahi hua ke me kise ke sath itne time tak tik pauga.. ya ye jada better hai ke koi mere sath itne time tak koi tike ye. 
+I think tujhko normal lage but mere liye nahi hai sach nahi hai..
+Sach baat ye hai ke mujhko sach me jabhi me tere sath time spent kar ta hu na vo trues lag ta hai me bata nahi sakta ke kitna comfort feel hota hai ☺️ 
+Tere haat se mar khana, tere mu se gali suna, tera hug kar na, tere smile mere panchat jokes parr, khud ke bare me bate batana na, yese chote chote chize bohot badi hai mere liya me bata nahi sakta 🥹
+Me to yehe wish karuga ke tu khush rahi bass chahai mere sath bhi ya nahi bhi but plz me to univerce se yehe wish karuga ke tu aur tere family sab khush raho happy family ke jese , aur tere mummy papa ke sare tention,stress,problems sab khatam ho 🧿 
+Yek to itne sare bate hai kya batau kya nahi samj me nahi aara hai 😅 but thoda he bolu ke,
+tujhko pata hai 
+You are the most beautiful part of my life.
+Every heartbeat whispers your name.
+Thank you for making every day brighter.
+I love you today, tomorrow, forever... 💖
+</p>
+
+<button onclick="burst()">
+💝 Love You
+</button>
+
+</div>
+
+<script>
+
+// Floating Hearts
+
+const hearts=document.getElementById("hearts");
+
+for(let i=0;i<35;i++){
+
+let h=document.createElement("div");
+
+h.className="heart";
+
+h.innerHTML="❤";
+
+h.style.left=Math.random()*100+"%";
+
+h.style.fontSize=(18+Math.random()*25)+"px";
+
+h.style.animationDuration=(5+Math.random()*6)+"s";
+
+h.style.animationDelay=Math.random()*5+"s";
+
+hearts.appendChild(h);
+
+}
+
+// Confetti
+
+const canvas=document.getElementById("confetti");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let confetti=[];
+
+function createConfetti(){
+
+for(let i=0;i<250;i++){
+
+confetti.push({
+
+x:Math.random()*canvas.width,
+
+y:Math.random()*canvas.height-canvas.height,
+
+r:Math.random()*8+3,
+
+d:Math.random()*250,
+
+color:`hsl(${Math.random()*360},100%,60%)`,
+
+tilt:Math.random()*10,
+
+speed:Math.random()*4+2
+
+});
+
+}
+
+}
+
+function draw(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+confetti.forEach(c=>{
+
+ctx.beginPath();
+
+ctx.fillStyle=c.color;
+
+ctx.fillRect(c.x,c.y,c.r,c.r);
+
+ctx.fill();
+
+});
+
+update();
+
+requestAnimationFrame(draw);
+
+}
+
+function update(){
+
+confetti.forEach((c,index)=>{
+
+c.y+=c.speed;
+
+c.x+=Math.sin(c.d);
+
+if(c.y>canvas.height){
+
+confetti.splice(index,1);
+
+}
+
+});
+
+}
+
+function burst(){
+
+createConfetti();
+
+}
+
+burst();
+
+draw();
+
+window.onresize=()=>{
+
+canvas.width=window.innerWidth;
+
+canvas.height=window.innerHeight;
+
+};
+
+</script>
+
+</body>
+</html>
